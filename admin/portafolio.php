@@ -24,7 +24,7 @@ if (mysqli_num_rows($result) > 0) {
 
 ?> 
 <?php
-if (isset($_POST) && isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) {
+if (isset($_POST) && isset($_FILES['foto']) && !empty($_FILES['foto']['name'])){
     $img = $_FILES['foto'];
     $name = $img['name'];
     $tmpname = $img['tmp_name']; 
@@ -73,16 +73,22 @@ if (isset($_POST) && isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) 
 </head>
 <body>
 <header class="principalheder">
-<img class="img-thumbnail" title="foto de perfil" src="img/<?php echo $imagen; ?>" width="80">
+<img onclick="cambiarfoto()" id="btnfoto" class="img-thumbnail" title="foto de perfil" src="img/<?php echo $imagen; ?>" width="80">
 <h1>Portafolio de <?php echo $nombre; ?></h1>
  <nav>
       <a class="dropdown-item" onclick="return confirm('¿Estás seguro de que deseas salir?')" href="salir.php">Salir <i class="fa fa-sign-out"></i></a>
 </nav>       
 </header>
-<form action="" method="POST" enctype="multipart/form-data">  
-            <input type="file" class="form-control" name="foto" required>
-<button class="btn btn-primary" type="submit">guardar foto</button>
+<form id="formfoto" action="" method="POST" enctype="multipart/form-data">  
+            <input type="file" id="formFile" class="form-control" name="foto" required>
+<button class="btn btn-primary" type="submit">Guardar foto</button>
+<button class="btn btn-danger" onclick="ocultarform()" type="buton">Cancelar</button>
 </form>
+<style>
+#formfoto {
+  display: none;
+}  
+</style>
 <div>   <p>Información de usuario:</p>
     <ul>
         <li>ID: <?php echo $user_id; ?></li>
@@ -91,7 +97,10 @@ if (isset($_POST) && isset($_FILES['foto']) && !empty($_FILES['foto']['name'])) 
         <li>Ciudad: <?php echo $ciudad; ?></li>
     </ul>
     <?php echo (isset($alert)) ? $alert : ''; ?>
-    <button id="compra-enlace" style="background-color: #4CAF50; color: white; padding: 14px 20px; border: none; border-radius: 25px; cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Editar mís datos</button>
+  <div>
+    <button type="button" onclick="mostrarmodal()" id="btnnewpublic" class="btn btn-info">Publicar nuevo articulo</button>
+    <button id="compra-enlace" class="btn btn-success" ><i class="fa fa-pencil-square-o"></i> Editar mís datos</button>
+  </div>  
 </div>    
 <!-- ----------------------------------------------------- -->
 <?php  
@@ -120,7 +129,7 @@ while ($texart = mysqli_fetch_assoc($Consultar)) {
 }
 ?> </div>
 
-   <button type="button" onclick="mostrarmodal()" id="btnnewpublic" class="btn btn-info">Publicar nuevo articulo</button>
+   <!-- <button type="button" onclick="mostrarmodal()" id="btnnewpublic" class="btn btn-info">Publicar nuevo articulo</button> -->
 
    <div id="modalpublic" class="modalpublic" tabindex="-1">
   <div class="modal-dialog">
@@ -146,35 +155,7 @@ while ($texart = mysqli_fetch_assoc($Consultar)) {
     </div>
   </div>
 </div>
-<script>
 
-  //  function mostrarmodal(){
-  //   document.getElementById("modalpublic").style.display="block";
-  //  };
-   
-  //  function ocultarmodel(){
-  //   document.getElementById("modalpublic").style.display="none";
-  //  };
-
-</script>
-
-<style>
-.modalpublic {
-    display: none;
-  /* --------------------------------- */
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 1060;
-    /* display: block; */
-    width: 100%;
-    height: 100%;
-    overflow: hidden auto;
-    outline: 0px;
-    background-color: #0009ff45;
-}  
-</style>
-<!-- ----------------------------------- -->
 <?php
 $sqlestadistica = "SELECT `id`, `valorhtml`, `valorcss`, `valorjavascript` FROM estadistica WHERE id='$user_id'";
 $resultestadistica = mysqli_query($conn, $sqlestadistica);
@@ -205,19 +186,7 @@ if (mysqli_num_rows($resultestadistica) > 0) {
 <button type="submit" id="guardarBtn">Guardar</button>
 </form>
     </div>
-<style>
-.div-estadisticas {
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.div-estadisticas form{
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: nowrap;
- }
-</style>
+
 <script>
 const progressBar = document.querySelector('.dynamic-progress');
 const rangeInput = document.getElementById('rangeInput');
@@ -235,11 +204,6 @@ guardarBtn.addEventListener('click', () => {
 });
 </script>
 <!-- ------------------------------------------------------- -->
-<style>
-#compra-modal{
-    background-color: rgb(180, 180, 229);
-}
-</style>
 <div id="compra-modal" class="modal modalcom" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
   <div class="modal-contenido">
     <span class="cerrarcom">&times;</span>

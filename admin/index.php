@@ -26,7 +26,7 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
     } else {
 
        
-        $mensaje = "Credenciales inválidas. Inténtalo de nuevo.";
+        $mensaje = "Datos inválidos. Inténtalo de nuevo.";
 
     }
     mysqli_close($conn);
@@ -38,6 +38,9 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="admin.css">
+<link href="../dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://use.fontawesome.com/fefc2fb08e.js"></script>
     <title>Login</title>
 </head>
 <body>
@@ -45,14 +48,19 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
 <div class="boxinicio">
     <h1>Iniciar sesión</h1>
 
-    <?php if (isset($mensaje)) { echo '<p style="color:red;">' . $mensaje . '</p>'; } ?>
+    <?php if (isset($mensaje)) { echo '<p class="alert alert-danger" role="alert" style="color:red;">' . $mensaje . '</p>'; } ?>
 
     <form action="index.php" method="POST" autocomplete="off">
-        <label>Usuario:</label><br>
-        <input type="text" name="usuario" required><br>
-        <label>Clave:</label><br>
-        <input type="password" name="clave" required><br>
-        <input type="submit" value="Iniciar sesión">
+    <div class="mb-3"> 
+        <label for="exampleInputEmail1" class="form-label">Usuario</label><br>
+        <input type="text" class="form-control" name="usuario" required><br>
+    </div>
+    <div class="mb-3">  
+        <label for="exampleInputEmail1" class="form-label">Clave</label><br>
+        <input type="password"  id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" name="clave" required><br>
+    </div>    
+          <input type="submit" class="btn btn-primary" value="Iniciar sesión">
+    
     </form>
 </div>
 

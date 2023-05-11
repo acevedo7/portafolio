@@ -91,3 +91,32 @@
     align-items: center;
 }
 /* -------------fin de editar publicacion ----------------------- */
+/* --------------------modal publicar------------- */
+.modalpublic {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1060;
+    width: 100%;
+    height: 100%;
+    overflow: hidden auto;
+    outline: 0px;
+    background-color: #0009ff45;
+}
+/* -------------------DIV ESTADISTICAS------------  */
+.div-estadisticas {
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  .div-estadisticas form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: nowrap;
+   }
+   #compra-modal{
+    background-color: rgb(180, 180, 229);
+}
+/* ------------------------------    */
