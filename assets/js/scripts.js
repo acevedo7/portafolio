@@ -31,3 +31,10 @@ function mostrarmodal(){
   document.getElementById("modalpublic").style.display="none";
  };
 // -----------fin--------------------------
+// ----------------formulario foto de perfil-----------------------
+function cambiarfoto(){
+  document.getElementById("formfoto").style.display="block";  
+}
+function ocultarform(){
+document.getElementById("formfoto").style.display="none";
+}
