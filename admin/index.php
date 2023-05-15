@@ -57,36 +57,11 @@ if (isset($_POST['usuario']) && isset($_POST['clave'])) {
     </div>
     <div class="mb-3">  
         <label for="exampleInputEmail1" class="form-label">Clave</label><br>
-        <input type="password"  id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" name="clave" required><br>
+        <input type="password"  id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" name="clave" placeholder="password" required><br>
     </div>    
           <input type="submit" class="btn btn-primary" value="Iniciar sesión">
     
     </form>
 </div>
-
-<style>
-* {
-    padding: 0;
-    margin: 0;
-}
-.boxinicio{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-start;
-}
-.boxinicio form {
-    padding: 3%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    align-items: center;
-}
-
-</style>
-
-
 </body>
 </html>

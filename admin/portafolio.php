@@ -79,29 +79,55 @@ if (isset($_POST) && isset($_FILES['foto']) && !empty($_FILES['foto']['name'])){
       <a class="dropdown-item" onclick="return confirm('¿Estás seguro de que deseas salir?')" href="salir.php">Salir <i class="fa fa-sign-out"></i></a>
 </nav>       
 </header>
-<form id="formfoto" action="" method="POST" enctype="multipart/form-data">  
+  <form id="formfoto" action="" method="POST" enctype="multipart/form-data">  
             <input type="file" id="formFile" class="form-control" name="foto" required>
-<button class="btn btn-primary" type="submit">Guardar foto</button>
-<button class="btn btn-danger" onclick="ocultarform()" type="buton">Cancelar</button>
-</form>
+        <button class="btn btn-primary" type="submit">Guardar foto</button>
+        <button class="btn btn-danger" onclick="ocultarform()" type="buton">Cancelar</button>
+  </form>
+<div> 
+  
+    <div class="box-informacion"> 
+      <h3><b>Tu Información de usuario:</b></h3>
+        <ul>
+            <li>ID: <?php echo $user_id; ?></li>
+            <li>Nombre: <?php echo $nombre; ?></li>
+            <li>Curso: <?php echo $curso; ?></li>
+            <li>Ciudad: <?php echo $ciudad; ?></li>
+        </ul>
+    </div>
+    <?php echo (isset($alert)) ? $alert : ''; ?>
+      <div class="box-btn-header">
+          <button type="button" onclick="mostrarmodal()" id="btnnewpublic" class="btn btn-info">Publicar nuevo articulo</button>
+          <button class="btn btn-primary" type="buton">Estadisticas</button>
+          <button id="compra-enlace" class="btn btn-success" ><i class="fa fa-pencil-square-o"></i> Editar mís datos</button>
+      </div>  
+      <hr>
+</div>
+
 <style>
 #formfoto {
   display: none;
-}  
-</style>
-<div>   <p>Información de usuario:</p>
-    <ul>
-        <li>ID: <?php echo $user_id; ?></li>
-        <li>Nombre: <?php echo $nombre; ?></li>
-        <li>Curso: <?php echo $curso; ?></li>
-        <li>Ciudad: <?php echo $ciudad; ?></li>
-    </ul>
-    <?php echo (isset($alert)) ? $alert : ''; ?>
-  <div>
-    <button type="button" onclick="mostrarmodal()" id="btnnewpublic" class="btn btn-info">Publicar nuevo articulo</button>
-    <button id="compra-enlace" class="btn btn-success" ><i class="fa fa-pencil-square-o"></i> Editar mís datos</button>
-  </div>  
-</div>    
+}
+.box-informacion {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.box-btn-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+.card-body {
+    border: thin solid black;
+    border-radius: 0.5rem;
+    padding: 1% 2%;
+    margin: 0% 2%;
+    background: #3a3ace4a;
+}
+</style>   
 <!-- ----------------------------------------------------- -->
 <?php  
    $articulos ="SELECT `id`, `id_usuario`, `titulo`, `parafo` FROM `articulo` WHERE id_usuario='$user_id'";
@@ -178,12 +204,15 @@ if (mysqli_num_rows($resultestadistica) > 0) {
   <div class="progress-bar dynamic-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
        <label for="rangeInput">HTML</label>
+       <?php
+  echo  "<div class='progress-bar htmlprogress' style='width:{$divhtml}%;' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'></div>";
+  ?>
      <input type="range" id="rangeInput" name="inpthtml" min="0" max="100" value="<?php echo $divhtml ?>">
        <label for="rangeInput">CSS</label>
      <input type="range" id="rangecss" name="inptcss" min="0" max="100" value="<?php echo $divcss ?>">     
      <label for="rangeInput">JavaScript</label>
      <input type="range" id="rangejava" name="inptjava" min="0" max="100" value="<?php echo $divjava ?>">
-<button type="submit" id="guardarBtn">Guardar</button>
+            <button type="submit" id="guardarBtn">Guardar</button>
 </form>
     </div>
 

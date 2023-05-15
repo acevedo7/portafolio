@@ -11,7 +11,7 @@ require_once "../config/conexion.php";
         echo "Todo OK";
         header('Location: portafolio.php');
       } else {
-        echo "Verifica los datos¡¡";
+        echo "¡Verifica los datos!";
       }
 }
     //  echo $idart;
@@ -47,30 +47,4 @@ require_once "../config/conexion.php";
       <button type="submit" class="btn btn-primary" name="enviar">Guardar</button>
     </form>
   </div>
-<style>  
-/* .boxpubli {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-}
-.boxpubli form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.boxpubli .form-label{
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-.boxpubli .form-control{
-    font-size: 120%;
-}
-.boxpubli .form-label{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-} */
-</style>  
 </body>
