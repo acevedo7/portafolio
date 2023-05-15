@@ -62,6 +62,9 @@ if (mysqli_num_rows($result) > 0) {
               </div>
         </div>
 </header>
+<style>
+
+</style>
 <?php  
    $articulos ="SELECT `id`, `id_usuario`, `titulo`, `parafo` FROM `articulo` WHERE id_usuario='$user_id'";
    $Consultar = mysqli_query($conn,$articulos);
@@ -69,15 +72,14 @@ if (mysqli_num_rows($result) > 0) {
   <div class="card"> 
 <div class="card-body">
   <h5 class="card-title">Para el profesor.</h5>
-    <i id="editconte" class="fa fa-pencil-square-o"></i>
-  <p class="card-text" id="cambiartext" >para ingresar al panel de admin <a href="admin/index.php"> Click aquí</a>Usuario: ema Clave: 1234</p>
+    <!-- <i id="editconte" class="fa fa-pencil-square-o"></i> -->
+  <p class="card-text" id="cambiartext">para ingresar al panel de admin <a href="admin/index.php"> Click aquí</a>Usuario: ema Clave: 1234</p>
 </div>
 <?php
 while ($texart = mysqli_fetch_assoc($Consultar)) {
 ?> <div class="card"> 
 <div class="card-body">
   <h5 class="card-title"><?php echo $texart['titulo'] ?></h5>
-    <i id="editconte" class="fa fa-pencil-square-o"></i>
   <p class="card-text" id="cambiartext" ><?php echo $texart['parafo'] ?></p>
 </div>
 </div>
@@ -98,14 +100,6 @@ if (mysqli_num_rows($resultestadistica) > 0) {
     die("Error: No se pudo encontrar la estadisticas del usuario.");
 }
 ?>
-<!-- <input type="range" min="0" max="100" value="" oninput="mostrarValor(this.value)">
-<div id="valor"></div> -->
-
-<!-- <script>
-function mostrarValor(valor) {
-  document.getElementById("valor").innerHTML = valor;
-}
-</script>  -->
 <div id="estadisticas"> 
       <h2>Conosimientos en las siguientes tecnologias</h2>
      <label>Uso en HTML <b> <?php echo $divhtml ?>%</b></label>
